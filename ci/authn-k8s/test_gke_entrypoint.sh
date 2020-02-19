@@ -147,6 +147,9 @@ function copyNginxSSLCert() {
 }
 
 function copyConjurPolicies() {
+
+  kubectl get pod -l app=conjur-cli --no-headers
+
   cli_pod=$(kubectl get pod -l app=conjur-cli --no-headers | grep Running | awk '{ print $1 }')
 
   kubectl cp ./dev/policies $cli_pod:/policies
